@@ -20,7 +20,9 @@ dialog{border:1px solid #d0b0b1;border-radius:9px;padding:23px;width:min(510px,c
   .header-inner{column-gap:8px}
   .header-cta{padding-inline:6px}
   .site-header nav{column-gap:8px;font-size:.875rem}
-  .hero-copy{padding-top:32px}
+  .hero-copy{padding-top:18px}
+  .hero h1{font-size:4.25rem}
+  .hero-actions{row-gap:8px}
   .hero-actions .button{padding-inline:16px}
 }
 @media print{.print-brief{padding:0;width:100%;color:#000}.print-brief .actions{display:none}body{background:#fff}.print-brief h1{font-size:58pt}.print-brief h2{font-size:25pt}a{color:#000}}
