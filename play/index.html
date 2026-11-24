@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#24151a">
+  <meta name="description" content="Drive Rouse Inferno's FTC robot in a BIOBUZZ practice match. Play solo, share a screen, or play a friend online.">
+  <title>BIOBUZZ Practice | Rouse Inferno</title>
+  <link rel="icon" href="./inferno.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./practice.css?v=4">
+  <script src="./practice.js?v=4" type="module"></script>
+</head>
+<body>
+  <header class="mast">
+    <a class="brand" href="https://ftc-events.firstinspires.org/team/31989" aria-label="FIRST team profile for Rouse Inferno">
+      <img src="./inferno.svg" width="38" height="38" alt="">
+      <span>ROUSE INFERNO<small>FTC TEAM 31989</small></span>
+    </a>
+    <span class="season">2026–27 · BIOBUZZ</span>
+  </header>
+  <main>
+    <div class="intro">
+      <h1>Robot practice</h1>
+      <div class="settings">
+        <label id="mode-label">Next match
+          <select id="mode"><option>Solo</option><option value="Two players">Two Players</option></select>
+        </label>
+        <label id="difficulty-label">Red AI
+          <select id="difficulty"><option>Easy</option><option selected>Medium</option><option>Hard</option></select>
+        </label>
+        <button class="action" id="restart" type="button" disabled>Start match</button>
+        <button class="quiet room-button" id="online" type="button" disabled>Play online</button>
+      </div>
+    </div>
+    <section class="match" aria-label="Match simulator">
+      <div class="scoreboard" aria-label="Score and match timer">
+        <div class="score blue" id="blue-score-card"><span>Blue</span><output id="blue-score" aria-label="Blue score">0</output></div>
+        <div class="clock"><span id="phase">Autonomous</span><output id="time" aria-label="Match phase time">0:30</output></div>
+        <div class="score red" id="red-score-card"><span>Red</span><output id="red-score" aria-label="Red score">0</output></div>
+      </div>
+      <div class="stage" id="stage">
+        <canvas id="arena" aria-label="BIOBUZZ practice arena" tabindex="0"></canvas>
+        <div class="views">
+          <div class="pane blue" id="blue-pane">
+            <div class="pane-info">
+              <div class="team-name">BLUE</div>
+              <div id="blue-hopper">Hopper 0 / 4</div>
+              <div id="blue-aim"></div>
+            </div>
+            <button class="camera" type="button" data-camera="0" aria-label="Switch Blue camera">Overview</button>
+          </div>
+          <div class="pane red" id="red-pane" hidden>
+            <div class="pane-info">
+              <div class="team-name">RED</div>
+              <div id="red-hopper">Hopper 0 / 4</div>
+              <div id="red-aim"></div>
+            </div>
+            <button class="camera" type="button" data-camera="1" aria-label="Switch Red camera">Follow</button>
+          </div>
+        </div>
+        <div class="gate" id="gate">
+          <div class="gate-card">
+            <h2 id="gate-title">Loading the field</h2>
+            <p id="gate-text" role="status">Preparing Full Bot and the physics engine.</p>
+            <button class="action" type="button" id="gate-button" hidden>Start match</button>
+          </div>
+        </div>
+      </div>
+      <div class="strip">
+        <p id="status">Choose a match mode above.</p>
+        <p class="controllers" id="controllers">Blue pad: A / Cross to join</p>
+        <button class="quiet" type="button" id="pause" disabled>Pause</button>
+      </div>
+    </section>
+    <section class="touch" aria-label="Touch controls">
+      <div class="touch-grid">
+        <button data-hold="KeyQ" aria-label="Turn left">↶</button>
+        <button data-hold="KeyW" aria-label="Drive forward">↑</button>
+        <button data-hold="KeyE" aria-label="Turn right">↷</button>
+        <button data-hold="KeyA" aria-label="Strafe left">←</button>
+        <button data-hold="KeyS" aria-label="Drive backward">↓</button>
+        <button data-hold="KeyD" aria-label="Strafe right">→</button>
+      </div>
+      <div class="touch-grid aim">
+        <button data-hold="ArrowLeft" aria-label="Aim turret left">←</button>
+        <button data-hold="ArrowUp" aria-label="Raise shooter hood">↑</button>
+        <button data-hold="ArrowRight" aria-label="Aim turret right">→</button>
+        <button data-hold="ArrowDown" aria-label="Lower shooter hood">↓</button>
+        <button id="touch-launch" type="button">Launch</button>
+      </div>
+    </section>
+    <details class="help" open>
+      <summary>Controls</summary>
+      <div class="help-grid">
+        <section>
+          <h2>Blue keyboard</h2>
+          <p><kbd>W A S D</kbd> Move and strafe · <kbd>Q E</kbd> Turn</p>
+          <p><kbd>← →</kbd> Turret · <kbd>↑ ↓</kbd> Hood</p>
+          <p><kbd>Space</kbd> Launch · <kbd>V</kbd> Camera</p>
+        </section>
+        <section>
+          <h2>Red keyboard</h2>
+          <p><kbd>I K</kbd> Drive · <kbd>J L</kbd> Turn</p>
+          <p><kbd>U O</kbd> Turret · <kbd>Y H</kbd> Hood</p>
+          <p><kbd>Enter</kbd> Launch · <kbd>B</kbd> Camera</p>
+        </section>
+        <section>
+          <h2>Controllers</h2>
+          <p>Left stick drives · Right stick aims</p>
+          <p>Bumpers turn · Right trigger launches</p>
+          <p>X / Square camera · Y / Triangle mode</p>
+          <p>Hold Menu / Options for 1 s to restart</p>
+        </section>
+      </div>
+      <p class="match-help"><kbd>M</kbd> selects Solo or Two Players. <kbd>1 2 3</kbd> or Blue D-pad left / up / right selects Solo difficulty. <kbd>R</kbd> starts a new match. Drive the intake into Pollen to collect it. Balls that land in a tray score for that goal’s team.</p>
+      <p class="match-help">Online, the host drives Blue and the guest drives Red. Red can also use <kbd>W S</kbd> to drive, <kbd>A D</kbd> or <kbd>Q E</kbd> to turn, arrows to aim, and <kbd>Space</kbd> to launch. <kbd>V</kbd> switches your own camera.</p>
+    </details>
+  </main>
+  <dialog id="room-dialog" aria-labelledby="room-title">
+    <div class="room-heading">
+      <h2 id="room-title">Play online</h2>
+      <button class="quiet" id="room-close" type="button" aria-label="Close room menu">Close</button>
+    </div>
+    <div id="room-menu">
+      <button class="action" id="room-create" type="button">Create room</button>
+      <form id="room-join-form" class="room-join">
+        <label for="join-code">Room code</label>
+        <div class="room-actions">
+          <input id="join-code" name="code" placeholder="XXXX-XXXX" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="12" required>
+          <button class="quiet" type="submit">Join room</button>
+        </div>
+      </form>
+    </div>
+    <div id="room-active" hidden>
+      <p id="room-side"></p>
+      <label for="share-code">Room code</label>
+      <div class="room-actions">
+        <input id="share-code" readonly>
+        <button class="quiet" id="copy-code" type="button">Copy code</button>
+        <button class="quiet" id="copy-invite" type="button">Copy invite</button>
+      </div>
+      <div class="room-actions room-exit">
+        <button class="quiet" id="room-leave" type="button">Leave room</button>
+        <button class="quiet" id="room-retry" type="button" hidden>Try again</button>
+      </div>
+    </div>
+    <p id="room-message" role="status"></p>
+  </dialog>
+</body>
+</html>
