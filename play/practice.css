@@ -22,8 +22,9 @@ button, select, summary { cursor: pointer; }
 button:disabled { opacity: .5; cursor: default; }
 :focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
 
-.mast { min-height: 66px; padding: 12px max(22px, calc((100vw - 1400px) / 2)); border-bottom: 1px solid #ffffff22; background: #28181f; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-.brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 850; letter-spacing: .07em; line-height: 1.12; }
+.mast { min-height: 66px; padding: 12px max(22px, calc((100vw - 1400px) / 2)); border-bottom: 1px solid #ffffff22; background: #28181f; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px; }
+.mast-nav { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.brand { display: inline-flex; flex: none; align-items: center; gap: 11px; font-weight: 850; letter-spacing: .07em; line-height: 1.12; }
 .brand small { display: block; margin-top: 5px; color: var(--gold); font: 700 .8rem/1.2 ui-monospace, monospace; }
 .season { color: var(--muted); font: 700 .85rem/1.2 ui-monospace, monospace; }
 main { width: min(1400px, calc(100% - 44px)); margin-inline: auto; padding: 22px 0 35px; }
@@ -55,6 +56,7 @@ canvas:focus { outline-offset: -4px; }
 .camera, .quiet { border: 1px solid #a88b9e; border-radius: 4px; color: var(--text); background: #30232fea; padding: 6px 10px; font-size: .875rem; font-weight: 680; min-height: 36px; }
 .camera { pointer-events: auto; }
 .camera:hover, .quiet:hover { background: #503344; }
+.team-home { display: inline-flex; justify-content: center; align-items: center; min-height: 44px; color: var(--gold); line-height: 1.2; text-align: center; }
 .room-button { min-height: 42px; padding-inline: 14px; }
 #room-dialog { color: var(--text); border: 1px solid #917182; border-radius: 9px; background: #2a1d26; padding: 20px; width: min(480px, calc(100% - 24px)); }
 #room-dialog::backdrop { background: #110c14bc; }
@@ -90,6 +92,7 @@ kbd { font: 700 .85em/1.2 ui-monospace, monospace; background: #523b4b; padding:
 @media (max-width: 680px) {
   main { width: calc(100% - 24px); padding-top: 16px; }
   .mast { padding-inline: 12px; min-height: 57px; }
+  .mast-nav { gap: 10px; }
   .brand { font-size: .875rem; }
   .brand img { width: 31px; height: 31px; }
   .season { font-size: .75rem; }
