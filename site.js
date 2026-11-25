@@ -330,7 +330,7 @@ if (sculptureCanvas) {
   const startSculpture = () => {
     if (started || !motionPreference.matches || navigator.connection?.saveData) return;
     started = true;
-    import('./assets/sculpture.js?v=5')
+    import('./assets/sculpture.js?v=6')
       .then(({ mountSculpture }) => mountSculpture(sculptureCanvas, motionPreference))
       .catch(() => {
         // The CAD stills and the rest of the homepage remain usable.
