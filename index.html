@@ -6,7 +6,8 @@
   <meta name="description" content="Meet Rouse Inferno, FTC Team 31989 at Rouse High School in Leander, Texas. Explore our robot, meet the team, and compare sponsorship levels.">
   <meta name="theme-color" content="#211114">
   <link rel="icon" href="assets/inferno.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="site.css?v=school-navigation">
+  <link rel="preload" href="assets/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="site.css?v=inferno-polish">
   <script src="site.js?v=packet-v2" type="module"></script>
 </head>
 <body>
@@ -14,7 +15,7 @@
 <header class="site-header" id="top">
   <div class="shell header-inner">
     <a class="brand" href="#top" aria-label="Rouse Inferno home"><img src="assets/inferno.svg" alt="" width="40" height="40"><span>ROUSE INFERNO<small>FTC TEAM 31989</small></span></a>
-    <nav aria-label="Main navigation"><a href="#team">The team</a><a href="#school">Rouse High School</a><a href="#robot">The robot</a><a href="play/">Play simulator</a><a href="#sponsor">Sponsor</a></nav>
+    <nav aria-label="Main navigation"><a href="#team">The team</a><a href="#school">Rouse High School</a><a href="#robot">The robot</a><a href="play/">Play Simulator</a><a href="#sponsor">Sponsor</a></nav>
     <a class="button button-gold header-cta" href="#support">Support the team</a>
   </div>
 </header>
@@ -22,27 +23,31 @@
   <section class="hero" aria-labelledby="hero-title">
     <div class="shell hero-inner">
       <div class="hero-copy">
-        <p class="eyebrow"><span></span> Rouse Robotics · Leander, TX</p>
-        <h1 id="hero-title">Rouse<br><em>Inferno.</em></h1>
-        <p class="intro">We’re FTC Team 31989, a student-run robotics team at Rouse High School competing in our second season.</p>
+        <h1 id="hero-title">Rouse<br><em>Inferno</em></h1>
+        <p class="intro">We’re FTC Team 31989, a student-run robotics team at Rouse High School in Leander, Texas. This is our second season.</p>
         <div class="actions hero-actions">
           <a class="button button-gold" href="play/">Play Simulator</a>
           <a class="button button-outline" href="assets/rouse-inferno-sponsorship-packet.pdf" download>Download Sponsorship Packet</a>
         </div>
-        <div class="actions"><a class="button button-outline" href="#support">Support our season</a><a class="button button-outline" href="#robot">Explore the robot</a></div>
       </div>
       <figure class="hero-art">
         <div class="hero-grid" aria-hidden="true"></div>
         <img src="assets/full-bot.webp" alt="Rouse Inferno’s Full Bot CAD, showing its mecanum wheels, front intake and raised shooter" width="1344" height="1010" fetchpriority="high">
-        <figcaption><span>FULL BOT</span><span>2026–27 BIOBUZZ</span></figcaption>
       </figure>
     </div>
   </section>
-  <div class="identity"><div class="shell identity-inner"><span><strong>31989</strong> FTC team</span><span><strong>12</strong> team members</span><a href="#school"><strong>Rouse High School</strong> Leander, Texas</a><a href="https://ftc-events.firstinspires.org/team/31989">FIRST team profile</a></div></div>
+  <div class="identity">
+    <div class="shell identity-inner">
+      <span><strong>2026–27</strong> BIOBUZZ</span>
+      <a href="#roster"><strong>12</strong> team members</a>
+      <a href="#school">Rouse High School</a>
+      <a href="https://ftc-events.firstinspires.org/team/31989">FIRST team profile</a>
+    </div>
+  </div>
 
   <section class="section shell" id="team" aria-labelledby="team-title">
     <div class="team">
-      <div><p class="eyebrow">The team</p><h2 id="team-title">Rouse Robotics.<br>Team Inferno.</h2></div>
+      <h2 id="team-title">Rouse Robotics</h2>
       <div class="team-copy">
         <p>Our 12 students in grades 9–12 lead the team’s software, hardware, CAD, business, and outreach work. We design, build, and program our robot for the FIRST Tech Challenge BIOBUZZ season.</p>
         <p>Our mission is to help students become engineers and business leaders through hands-on technical work, leadership, and service. We help other teams develop and make room for every voice, so future students can build on what we learn.</p>
@@ -61,14 +66,15 @@
   </section>
 
   <section class="shell roster" id="roster" aria-labelledby="roster-title">
-    <div><p class="eyebrow">Meet the team</p><h2 id="roster-title">The people behind the robot.</h2></div>
+    <h2 id="roster-title">Meet the team</h2>
     <p id="roster-pending">Team portraits are coming soon.</p>
     <ul class="roster-grid" id="roster-grid" hidden></ul>
   </section>
 
   <section class="section shell school" id="school" aria-labelledby="school-title">
     <div class="section-top">
-      <div><p class="eyebrow">Leander ISD</p><h2 id="school-title">Rouse High School</h2></div>
+      <h2 id="school-title">Rouse High School</h2>
+      <p>Leander Independent School District</p>
     </div>
     <div class="packet-grid">
       <article>
@@ -98,7 +104,7 @@
   <section class="season-section" id="season" aria-labelledby="season-title">
     <div class="shell section">
       <div class="section-top">
-        <div><p class="eyebrow">Our previous season</p><h2 id="season-title">From rookie season to BIOBUZZ.</h2></div>
+        <h2 id="season-title">Our first FTC season</h2>
         <p>Both Rouse teams earned awards in the first season after the program returned.</p>
       </div>
       <dl class="season-results" aria-label="Rouse Inferno results">
@@ -114,8 +120,8 @@
           <ul><li>Compete at the FTC World Championship.</li><li>Further FIRST’s initiatives.</li><li>Build real-world skills.</li></ul>
         </div>
         <div class="season-photos">
-          <figure><img src="assets/season/previous-season-field.png" width="379" height="321" loading="lazy" alt="Robots and game pieces on a competition field"><figcaption>Competition field</figcaption></figure>
-          <figure><img src="assets/season/team-workbench.png" width="379" height="342" loading="lazy" alt="Team members working on a robot at a bench"><figcaption>Robot development</figcaption></figure>
+          <figure><img src="assets/season/previous-season-field.png" width="379" height="321" loading="lazy" alt="Robots and game pieces on a competition field"></figure>
+          <figure><img src="assets/season/team-workbench.png" width="379" height="342" loading="lazy" alt="Team members working on a robot at a bench"></figure>
         </div>
       </div>
     </div>
@@ -123,7 +129,7 @@
 
   <section class="lab" id="robot" aria-labelledby="robot-title">
     <div class="shell section">
-      <div class="section-top"><div><p class="eyebrow">The robot</p><h2 id="robot-title">Inside Full Bot.</h2></div><p>Explore the mecanum drivetrain, roller intake, and Pollen-launching turret in our Full Bot CAD. Spread out the assemblies or inspect individual components.</p></div>
+      <div class="section-top"><h2 id="robot-title">Inside Full Bot</h2><p>Explore the mecanum drivetrain, roller intake, and Pollen-launching turret in our Full Bot CAD. Spread out the assemblies or inspect individual components.</p></div>
       <div class="lab-grid">
         <div class="model-stage" id="stage" data-view="poster">
           <div class="stage-grid" aria-hidden="true"></div>
@@ -168,7 +174,7 @@
   </section>
 
   <section class="section shell" id="support" aria-labelledby="support-title">
-    <div class="section-top"><div><p class="eyebrow">Support Team 31989</p><h2 id="support-title">What you make possible.</h2></div><p>Sponsorship helps students gain experience in engineering, programming, design, and business leadership while lowering the cost of joining and competing.</p></div>
+    <div class="section-top"><h2 id="support-title">What sponsorship funds</h2><p>Sponsorship helps students gain experience in engineering, programming, design, and business leadership while lowering the cost of joining and competing.</p></div>
     <div class="support-grid">
       <div class="giving-card">
         <h3>Make a contribution</h3>
@@ -191,8 +197,8 @@
   <section class="sponsor" id="sponsor" aria-labelledby="sponsor-title">
     <div class="section shell">
       <div class="section-top">
-        <div><p class="eyebrow">Sponsor Rouse Inferno</p><h2 id="sponsor-title">Sponsorship levels.</h2></div>
-        <div class="actions"><a class="button button-line" href="sponsor-brief.html#finances">View the $3,511 season budget</a><a class="button button-line" href="assets/rouse-inferno-sponsorship-packet.pdf" download>Download sponsor packet</a></div>
+        <h2 id="sponsor-title">Sponsorship levels</h2>
+        <div class="actions"><a class="button button-gold" href="assets/rouse-inferno-sponsorship-packet.pdf" download>Download Sponsorship Packet</a><a class="button button-line" href="sponsor-brief.html#finances">View the $3,511 season budget</a></div>
       </div>
       <div class="sponsor-grid sponsor-levels" data-sponsorship-tiers></div>
       <div class="sponsor-other">
@@ -207,7 +213,7 @@
     </div>
   </section>
   <section class="section shell faq" aria-labelledby="faq-title">
-    <div><p class="eyebrow">Giving questions</p><h2 id="faq-title">Before you give.</h2></div>
+    <h2 id="faq-title">Sponsorship questions</h2>
     <div class="faq-items">
       <details><summary>How can I make a donation?</summary><p id="donate-answer">Start a giving inquiry to request the approved payment instructions for Team 31989.</p></details>
       <details><summary>Can my business give parts or services?</summary><p>Yes. Use the sponsorship inquiry to tell us what you have in mind so we can confirm whether it fits the team’s needs.</p></details>
