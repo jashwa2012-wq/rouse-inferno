@@ -63,7 +63,7 @@
 .cinematic-home :is(.season-section, .sponsor) > .shell,
 .cinematic-home .lab :is(.section-top, .lab-controls) { position: relative; z-index: 2; }
 .cinematic-home .lab-controls { background: #fffdfa; }
-.site-header .brand img { flex: none; width: 48px; height: 48px; }
+:is(.site-header, .site-footer, .print-brief) .brand img { flex: none; width: 48px; height: 48px; }
 .sculpture-live .hero-art { touch-action: pan-y; }
 .sculpture-live .hero-art img,
 .sculpture-live .model-poster { opacity: 0; animation: none; }
@@ -238,7 +238,7 @@ dialog{border:1px solid #d0b0b1;border-radius:9px;padding:23px;width:min(510px,c
     display: grid;
     grid-template-columns: max-content minmax(0, 1fr);
   }
-  .site-header .brand img {
+  :is(.site-header, .site-footer, .print-brief) .brand img {
     width: clamp(48px, 14vw, 60px);
     height: auto;
   }
@@ -321,6 +321,7 @@ dialog{border:1px solid #d0b0b1;border-radius:9px;padding:23px;width:min(510px,c
   .packet-table th,.packet-table td{padding:6px}
 }
 @media print{
+  .print-brief .brand img{width:40px;height:40px}
   @page{size:letter;margin:.42in}
   .print-brief h2{break-after:avoid}
   #sponsorship-levels{break-inside:avoid}
