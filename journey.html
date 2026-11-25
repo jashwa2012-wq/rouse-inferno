@@ -8,8 +8,8 @@
   <link rel="icon" href="assets/inferno.svg" type="image/svg+xml">
   <link rel="preload" href="assets/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="site.css?v=journey-and-viewer">
-  <link rel="stylesheet" href="journey.css?v=turret">
-  <script src="journey.js?v=turret" type="module"></script>
+  <link rel="stylesheet" href="journey.css?v=turret-launch">
+  <script src="journey.js?v=turret-launch" type="module"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -121,19 +121,26 @@
         <p>Our next goal is to make better use of the top-mounted 360° turret. We plan to practice lining up shots with the turret while keeping the drivetrain pointed where the driver needs it.</p>
         <section class="turret-demo" id="turret-demo" aria-labelledby="turret-demo-title">
           <h5 id="turret-demo-title">Try the 360° turret</h5>
-          <p id="turret-demo-help">Drag the slider or tap a target. The gold aim line turns with the turret while the chassis faces forward.</p>
+          <p id="turret-demo-help">Drag the slider or tap a target, then launch a Pollen ball along the gold aim line. The chassis stays pointed forward.</p>
           <div class="turret-demo-layout">
-            <div class="turret-stage" role="group" aria-label="Overhead view with four aiming targets">
-              <div class="turret-compass" aria-hidden="true"></div>
-              <img class="turret-layer" src="assets/journey/turret-chassis.webp?v=step-ap242" width="768" height="768" alt="Top view of Full Bot’s chassis, facing the front target" loading="lazy" draggable="false">
-              <div class="turret-moving" aria-hidden="true">
-                <img class="turret-layer" src="assets/journey/turret-upper.webp?v=step-ap242" width="768" height="768" alt="" loading="lazy" draggable="false">
-                <span class="turret-aim-line"></span>
+            <div class="turret-play">
+              <div class="turret-stage" role="group" aria-label="Overhead view with four aiming targets">
+                <div class="turret-compass" aria-hidden="true"></div>
+                <img class="turret-layer" src="assets/journey/turret-chassis.webp?v=step-ap242" width="768" height="768" alt="Top view of Full Bot’s chassis, facing the front target" loading="lazy" draggable="false">
+                <div class="turret-moving" aria-hidden="true">
+                  <img class="turret-layer" src="assets/journey/turret-upper.webp?v=step-ap242" width="768" height="768" alt="" loading="lazy" draggable="false">
+                  <span class="turret-aim-line"></span>
+                </div>
+                <button type="button" class="turret-target" data-bearing="0" aria-label="Front target" aria-pressed="true" disabled>Front</button>
+                <button type="button" class="turret-target" data-bearing="-90" aria-label="Left target" aria-pressed="false" disabled>Left</button>
+                <button type="button" class="turret-target" data-bearing="90" aria-label="Right target" aria-pressed="false" disabled>Right</button>
+                <button type="button" class="turret-target" data-bearing="180" aria-label="Rear target" aria-pressed="false" disabled>Rear</button>
+                <span class="turret-pollen" aria-hidden="true" hidden></span>
               </div>
-              <button type="button" class="turret-target" data-bearing="0" aria-label="Front target" aria-pressed="true" disabled>Front</button>
-              <button type="button" class="turret-target" data-bearing="-90" aria-label="Left target" aria-pressed="false" disabled>Left</button>
-              <button type="button" class="turret-target" data-bearing="90" aria-label="Right target" aria-pressed="false" disabled>Right</button>
-              <button type="button" class="turret-target" data-bearing="180" aria-label="Rear target" aria-pressed="false" disabled>Rear</button>
+              <div class="turret-launch-actions">
+                <button id="turret-launch" class="button button-gold" type="button" disabled>Launch</button>
+                <p id="turret-shot-result" role="status" aria-atomic="true"></p>
+              </div>
             </div>
             <div class="turret-controls">
               <div class="turret-angle-label">
@@ -148,7 +155,7 @@
               </dl>
             </div>
           </div>
-          <noscript><p>Enable JavaScript to try aiming the turret.</p></noscript>
+          <noscript><p>Enable JavaScript to aim the turret and launch a Pollen ball.</p></noscript>
         </section>
       </li>
     </ol>

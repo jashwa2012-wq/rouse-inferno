@@ -109,6 +109,7 @@
   border-radius: var(--card-radius);
   background: #fffcf9;
 }
+.turret-play { background: #2b1e27; color: var(--cream); }
 .turret-stage {
   position: relative;
   aspect-ratio: 1;
@@ -174,6 +175,38 @@
   .turret-target:hover { background: #51303d; }
 }
 .turret-target:active { background: #613a48; }
+.turret-pollen {
+  position: absolute;
+  z-index: 1;
+  width: clamp(12px, 3.8%, 21px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ffe59b;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, #fff3a1, #ffc63f 47%, #a74813);
+  box-shadow: 0 1px 4px #1c1012;
+  pointer-events: none;
+}
+.turret-launch-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px clamp(12px, 3vw, 18px);
+  border-top: 1px solid #f7d8be33;
+}
+.turret-launch-actions .button {
+  min-height: 44px;
+  flex: none;
+  padding-inline: 16px;
+  font: inherit;
+  font-size: .93rem;
+  font-weight: 760;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.turret-launch-actions .button:focus-visible { outline-color: var(--gold); outline-offset: 3px; }
+.turret-launch-actions p { margin: 0; font-size: .875rem; line-height: 1.35; }
 .turret-controls { align-self: center; min-width: 0; padding: clamp(16px, 4vw, 34px); }
 .turret-angle-label, .turret-range-ends, .turret-readout > div {
   display: flex;
