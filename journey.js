@@ -41,11 +41,14 @@ const aim = turret.querySelector('#turret-aim');
 const targets = [...turret.querySelectorAll('[data-bearing]')];
 const stage = turret.querySelector('.turret-stage');
 const launch = turret.querySelector('#turret-launch');
+const reset = turret.querySelector('#turret-reset');
+const scoreValue = turret.querySelector('#turret-score');
 const pollen = turret.querySelector('.turret-pollen');
 const shotResult = turret.querySelector('#turret-shot-result');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let flight;
 let litTarget;
+let score = 0;
 
 function describeBearing(degrees) {
   if (degrees === 0) return 'forward';
@@ -95,16 +98,20 @@ function findImpact(direction) {
   }
 }
 
-function launchPollen() {
-  const degrees = angle.valueAsNumber;
-  const radians = degrees * Math.PI / 180;
-  const direction = { x: Math.sin(radians), y: -Math.cos(radians) };
-
+function clearShot() {
   flight?.cancel();
   flight = undefined;
   litTarget?.classList.remove('is-hit');
   litTarget = undefined;
   shotResult.textContent = '';
+}
+
+function launchPollen() {
+  const degrees = angle.valueAsNumber;
+  const radians = degrees * Math.PI / 180;
+  const direction = { x: Math.sin(radians), y: -Math.cos(radians) };
+
+  clearShot();
   pollen.hidden = false;
 
   const impact = findImpact(direction);
@@ -115,10 +122,14 @@ function launchPollen() {
   const finishShot = () => {
     flight = undefined;
     litTarget = impact?.target;
-    litTarget?.classList.add('is-hit');
-    shotResult.textContent = litTarget
-      ? `Hit the ${litTarget.getAttribute('aria-label').toLowerCase()}.`
-      : `Pollen traveled ${describeBearing(degrees)} and missed.`;
+    if (litTarget) {
+      litTarget.classList.add('is-hit');
+      score += 1;
+      scoreValue.textContent = score;
+      shotResult.textContent = `Hit the ${litTarget.getAttribute('aria-label').toLowerCase()}. +1 point.`;
+    } else {
+      shotResult.textContent = `Pollen traveled ${describeBearing(degrees)} and missed.`;
+    }
   };
 
   if (reducedMotion.matches || !pollen.animate) {
@@ -143,4 +154,12 @@ angle.disabled = false;
 angle.addEventListener('input', updateTurret);
 launch.disabled = false;
 launch.addEventListener('click', launchPollen);
+reset.disabled = false;
+reset.addEventListener('click', () => {
+  clearShot();
+  score = 0;
+  scoreValue.textContent = score;
+  pollen.hidden = true;
+  shotResult.textContent = 'Score reset to 0.';
+});
 updateTurret();

@@ -195,16 +195,16 @@
   pointer-events: none;
 }
 .turret-launch-actions {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 12px;
+  gap: 7px clamp(8px, 2vw, 12px);
   padding: 10px clamp(12px, 3vw, 18px);
   border-top: 1px solid #f7d8be33;
 }
 .turret-launch-actions .button {
   min-height: 44px;
-  flex: none;
-  padding-inline: 16px;
+  padding-inline: clamp(12px, 3vw, 16px);
   font: inherit;
   font-size: .93rem;
   font-weight: 760;
@@ -213,7 +213,9 @@
   -webkit-tap-highlight-color: transparent;
 }
 .turret-launch-actions .button:focus-visible { outline-color: var(--gold); outline-offset: 3px; }
-.turret-launch-actions p { margin: 0; font-size: .875rem; line-height: 1.35; }
+.turret-score { margin: 0; font-size: .875rem; text-align: center; }
+.turret-score strong { color: var(--gold); font-size: 1.1rem; font-variant-numeric: tabular-nums; }
+#turret-shot-result { grid-column: 1 / -1; min-height: 1.35em; margin: 0; font-size: .875rem; line-height: 1.35; }
 .turret-controls { align-self: center; min-width: 0; padding: clamp(16px, 4vw, 34px); }
 .turret-angle-label, .turret-range-ends, .turret-readout > div {
   display: flex;
