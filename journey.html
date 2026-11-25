@@ -8,8 +8,8 @@
   <link rel="icon" href="assets/inferno.svg" type="image/svg+xml">
   <link rel="preload" href="assets/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="site.css?v=journey-and-viewer">
-  <link rel="stylesheet" href="journey.css?v=2">
-  <script src="journey.js?v=1" type="module"></script>
+  <link rel="stylesheet" href="journey.css?v=turret">
+  <script src="journey.js?v=turret" type="module"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -107,7 +107,10 @@
         <time datetime="2026-11-22">November 22, 2026</time>
         <h3>CARL League Meet 1</h3>
         <p>All three Rouse teams shared the field at the Austin STEM Center in Qualification 16. Inferno and Vortex won 61–59 on red, with Riptide playing on blue alongside Chaotic Current.</p>
-        <a href="https://ftc-events.firstinspires.org/2026/USTXCECAM1/qualifications?team=31989">CARL Meet 1 results</a>
+        <div class="journey-meet-links">
+          <a href="https://ftc-events.firstinspires.org/2026/USTXCECAM1/qualifications?team=31989">CARL Meet 1 results</a>
+          <a href="#turret-demo">Try the turret demo</a>
+        </div>
         <div class="journey-gallery">
           <figure><a href="assets/journey/field-ready.webp" data-caption="Full Bot at the field boundary"><img src="assets/journey/field-ready.webp" width="675" height="1200" alt="Team members kneel beside Full Bot at the edge of the field" loading="lazy"></a><figcaption>Ready at the field boundary</figcaption></figure>
           <figure><a href="assets/journey/pit-check.webp" data-caption="A closer look at the robot between matches"><img src="assets/journey/pit-check.webp" width="675" height="1200" alt="Students holding Full Bot and looking closely at its mechanisms" loading="lazy"></a><figcaption>A closer look between matches</figcaption></figure>
@@ -116,6 +119,37 @@
         </div>
         <h4 class="journey-followup">After the meet</h4>
         <p>Our next goal is to make better use of the top-mounted 360° turret. We plan to practice lining up shots with the turret while keeping the drivetrain pointed where the driver needs it.</p>
+        <section class="turret-demo" id="turret-demo" aria-labelledby="turret-demo-title">
+          <h5 id="turret-demo-title">Try the 360° turret</h5>
+          <p id="turret-demo-help">Drag the slider or tap a target. The gold aim line turns with the turret while the chassis faces forward.</p>
+          <div class="turret-demo-layout">
+            <div class="turret-stage" role="group" aria-label="Overhead view with four aiming targets">
+              <div class="turret-compass" aria-hidden="true"></div>
+              <img class="turret-layer" src="assets/journey/turret-chassis.webp" width="768" height="768" alt="Top view of Full Bot’s chassis, facing the front target" loading="lazy" draggable="false">
+              <div class="turret-moving" aria-hidden="true">
+                <img class="turret-layer" src="assets/journey/turret-upper.webp" width="768" height="768" alt="" loading="lazy" draggable="false">
+                <span class="turret-aim-line"></span>
+              </div>
+              <button type="button" class="turret-target" data-bearing="0" aria-label="Front target" aria-pressed="true" disabled>Front</button>
+              <button type="button" class="turret-target" data-bearing="-90" aria-label="Left target" aria-pressed="false" disabled>Left</button>
+              <button type="button" class="turret-target" data-bearing="90" aria-label="Right target" aria-pressed="false" disabled>Right</button>
+              <button type="button" class="turret-target" data-bearing="180" aria-label="Rear target" aria-pressed="false" disabled>Rear</button>
+            </div>
+            <div class="turret-controls">
+              <div class="turret-angle-label">
+                <label for="turret-angle">Turret angle</label>
+                <output for="turret-angle" id="turret-angle-value" aria-hidden="true">0°</output>
+              </div>
+              <input id="turret-angle" type="range" min="-180" max="180" step="1" value="0" aria-describedby="turret-demo-help" disabled>
+              <div class="turret-range-ends" aria-hidden="true"><span>−180°</span><span>0°</span><span>180°</span></div>
+              <dl class="turret-readout">
+                <div><dt>Chassis heading</dt><dd>Forward</dd></div>
+                <div><dt>Turret aim</dt><dd id="turret-aim">Front target</dd></div>
+              </dl>
+            </div>
+          </div>
+          <noscript><p>Enable JavaScript to try aiming the turret.</p></noscript>
+        </section>
       </li>
     </ol>
     <p class="journey-next"><a class="button button-line" href="./#robot">Explore Full Bot in 3D</a></p>

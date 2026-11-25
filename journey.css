@@ -73,7 +73,9 @@
 .journey-timeline time { color: #793241; font-size: .9rem; font-weight: 690; }
 .journey-timeline h3 { margin-block: 3px 5px; font-size: clamp(1.18rem, 2vw, 1.55rem); line-height: 1.22; }
 .journey-timeline p { max-width: 66ch; }
-.journey-timeline li>a {
+.journey-meet-links { display: flex; flex-wrap: wrap; gap: 0 18px; }
+.journey-timeline li > a,
+.journey-meet-links a {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -96,6 +98,98 @@
 .journey-gallery img[src$="field-ready.webp"] { object-position: center 70%; }
 .journey-gallery img[src$="pit-check.webp"] { object-position: center 62%; }
 .journey-followup { margin: 24px 0 5px; font-size: 1.12rem; }
+.turret-demo { max-width: 940px; margin-top: 28px; scroll-margin-top: 20px; }
+.turret-demo h5 { margin: 0 0 5px; font-size: clamp(1.28rem, 2.3vw, 1.65rem); line-height: 1.2; }
+.turret-demo > p { margin-bottom: 14px; color: var(--muted); }
+.turret-demo-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid #cbb7bb;
+  border-radius: var(--card-radius);
+  background: #fffcf9;
+}
+.turret-stage {
+  position: relative;
+  aspect-ratio: 1;
+  background: radial-gradient(circle at center, #53404a, #2b1e27 74%);
+  color: var(--cream);
+}
+.turret-compass { position: absolute; inset: 12%; border: 1px solid #f7d8be40; border-radius: 50%; }
+.turret-layer, .turret-moving { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.turret-moving { transform: rotate(var(--turret-angle, 0deg)); }
+.turret-aim-line {
+  position: absolute;
+  inset: 16% auto 50% 50%;
+  width: 2px;
+  margin-left: -1px;
+  background: repeating-linear-gradient(to top, var(--gold) 0 5px, transparent 5px 9px);
+  filter: drop-shadow(0 1px 1px #251316);
+}
+.turret-aim-line::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  border-inline: 4px solid transparent;
+  border-bottom: 7px solid var(--gold);
+}
+.turret-target {
+  position: absolute;
+  left: var(--target-x, 50%);
+  top: var(--target-y, 50%);
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 2px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 3px 5px;
+  border: 1px solid transparent;
+  border-radius: var(--button-radius);
+  background: #2b1e27;
+  color: var(--cream);
+  font-size: .78rem;
+  font-weight: 720;
+  line-height: 1.15;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.turret-target::before {
+  content: "";
+  width: 13px;
+  height: 13px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+.turret-target[data-bearing="0"] { --target-y: 12%; }
+.turret-target[data-bearing="-90"] { --target-x: 12%; }
+.turret-target[data-bearing="90"] { --target-x: 88%; }
+.turret-target[data-bearing="180"] { --target-y: 88%; }
+.turret-target[aria-pressed="true"] { border-color: #f6c36e99; color: var(--gold); }
+.turret-target[aria-pressed="true"]::before { background: radial-gradient(circle, currentColor 0 26%, transparent 32%); }
+.turret-target:focus-visible { outline-color: var(--gold); outline-offset: 2px; }
+@media (hover: hover) {
+  .turret-target:hover { background: #51303d; }
+}
+.turret-target:active { background: #613a48; }
+.turret-controls { align-self: center; min-width: 0; padding: clamp(16px, 4vw, 34px); }
+.turret-angle-label, .turret-range-ends, .turret-readout > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.turret-angle-label { font-weight: 750; }
+.turret-angle-label output { color: #7c2d3b; font-variant-numeric: tabular-nums; }
+.turret-controls input { display: block; width: 100%; min-height: 44px; margin: 0; accent-color: #8e3a4a; }
+.turret-range-ends { color: var(--muted); font-size: .82rem; }
+.turret-readout { display: grid; gap: 8px; margin: 16px 0 0; padding-top: 13px; border-top: 1px solid var(--rule); font-size: .875rem; }
+.turret-readout dt { color: var(--muted); }
+.turret-readout dd { margin: 0; font-weight: 720; text-align: right; }
+@media (max-width: 640px) {
+  .turret-demo-layout { grid-template-columns: 1fr; }
+}
 .journey-next { margin-top: 32px; }
 .journey-lightbox {
   width: min(960px, calc(100% - 24px));

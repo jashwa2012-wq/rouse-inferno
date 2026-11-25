@@ -33,3 +33,34 @@ lightbox.addEventListener('keydown', event => {
   }
 });
 lightbox.addEventListener('close', () => opener?.focus({ preventScroll: true }));
+
+const turret = document.querySelector('#turret-demo');
+const angle = turret.querySelector('#turret-angle');
+const angleValue = turret.querySelector('#turret-angle-value');
+const aim = turret.querySelector('#turret-aim');
+const targets = [...turret.querySelectorAll('[data-bearing]')];
+
+function updateTurret() {
+  const degrees = angle.valueAsNumber;
+  const bearing = degrees === -180 ? 180 : degrees;
+  const magnitude = Math.abs(degrees);
+  turret.style.setProperty('--turret-angle', `${degrees}deg`);
+  angleValue.textContent = `${degrees < 0 ? '−' : ''}${magnitude}°`;
+  const direction = bearing === 0 ? 'forward' : bearing === 180 ? 'to the rear' : degrees < 0 ? 'left of front' : 'right of front';
+  angle.setAttribute('aria-valuetext', `${magnitude} ${magnitude === 1 ? 'degree' : 'degrees'} ${direction}`);
+
+  const aligned = targets.find(target => Number(target.dataset.bearing) === bearing);
+  for (const target of targets) target.setAttribute('aria-pressed', String(target === aligned));
+  aim.textContent = aligned ? aligned.getAttribute('aria-label') : 'Between targets';
+}
+
+for (const target of targets) {
+  target.disabled = false;
+  target.addEventListener('click', () => {
+    angle.value = target.dataset.bearing;
+    updateTurret();
+  });
+}
+angle.disabled = false;
+angle.addEventListener('input', updateTurret);
+updateTurret();
