@@ -63,7 +63,7 @@
 .cinematic-home :is(.season-section, .sponsor) > .shell,
 .cinematic-home .lab :is(.section-top, .lab-controls) { position: relative; z-index: 2; }
 .cinematic-home .lab-controls { background: #fffdfa; }
-.sculpture-live .hero-art { touch-action: pan-y pinch-zoom; }
+.sculpture-live .hero-art { touch-action: pan-y; }
 .sculpture-live .hero-art img,
 .sculpture-live .model-poster { opacity: 0; animation: none; }
 .sculpture-live .model-stage { isolation: auto; }
@@ -97,6 +97,7 @@
 @media (max-width:760px) { .sculpture-toggle, .sculpture-drag-hint { bottom: -14px; } }
 @media (prefers-reduced-motion:reduce) {
   .sculpture-canvas, .sculpture-toggle, .sculpture-live .sculpture-drag-hint { display: none; }
+  .sculpture-live .hero-art { touch-action: auto; }
   .sculpture-live .hero-art img, .sculpture-live .model-poster { opacity: 1; }
 }
 @media print {
