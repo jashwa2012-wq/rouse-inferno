@@ -1,16 +1,23 @@
 const portfolioOutreach = 'Documents robot design and shares team progress.';
+const captain = 'Sets team priorities and coordinates subteams.';
+const software = 'Writes and tests autonomous and driver controls.';
+const hardware = 'Builds, wires, and tests the robot.';
+const cad = 'Models robot parts and assemblies in CAD.';
 
 export const roster = [
   {
     name: 'Mohammed C.', photo: 'assets/members/mohammed-c.png', role: 'Captain',
+    responsibilities: [captain],
     highlights: ['Embedded systems engineering with Arduino', '3+ years of mechanical design in Onshape'],
   },
   {
     name: 'Saharsh M.', photo: 'assets/members/saharsh-m.png', role: 'Captain',
+    responsibilities: [captain],
     highlights: ['Silver at UIL Computer Science Regionals', 'Product lead at Social Hunt'],
   },
   {
     name: 'Hasini L.', photo: 'assets/members/hasini-l.png', role: 'Captain',
+    responsibilities: [captain],
     highlights: ['America’s Top Student Innovator', 'Neurotech and Embedded Systems Champion at NSF'],
   },
   {
@@ -30,26 +37,32 @@ export const roster = [
   },
   {
     name: 'Surya K.', photo: 'assets/members/surya-k.png', role: 'Software',
+    responsibilities: [software],
     highlights: ['2× VEX Worlds qualifier', 'VEX team programmer', '4+ years of Python programming'],
   },
   {
     name: 'Saravanan K.', photo: 'assets/members/saravanan-k.png', role: 'Hardware',
+    responsibilities: [hardware],
     highlights: ['2× VEX Worlds qualifier', 'VEX team lead driver and builder', 'Fusion 360 CAD designer'],
   },
   {
     name: 'Shaurya G.', photo: 'assets/members/shaurya-g.png', role: 'CAD',
+    responsibilities: [cad],
     highlights: ['Engineering club president', 'STEM researcher', '2+ years with Onshape and Autodesk'],
   },
   {
     name: 'Sai P.', photo: 'assets/members/sai-p.png', role: 'CAD',
+    responsibilities: [cad],
     highlights: ['Game developer using CC2DX and Godot', '2× FTDM ICDC qualifier', 'Former CAD team lead'],
   },
   {
     name: 'Evalyn H.', photo: 'assets/members/evalyn-h.png', role: 'Hardware',
+    responsibilities: [hardware],
     highlights: ['Soldering and tinkering workshop organizer', 'Autodesk Inventor certified'],
   },
   {
     name: 'Maanya K.', photo: 'assets/members/maanya-k.png', role: 'Software',
+    responsibilities: [software],
     highlights: ['5+ years of programming experience', 'Game developer in Roblox Studio', 'Systems designer'],
   },
 ];

@@ -1,5 +1,5 @@
 import { fundraising, renderSponsorshipTiers } from './fundraising.js?v=packet-v2';
-import { roster } from './roster.js?v=portfolio-duties';
+import { roster } from './roster.js?v=team-duties';
 
 const $ = (selector) => document.querySelector(selector);
 const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
