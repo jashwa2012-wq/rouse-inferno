@@ -95,6 +95,7 @@
 .journey-gallery img[src$="bench-robot.webp"] { object-position: center 56%; }
 .journey-gallery img[src$="field-ready.webp"] { object-position: center 70%; }
 .journey-gallery img[src$="pit-check.webp"] { object-position: center 62%; }
+.journey-followup { margin: 24px 0 5px; font-size: 1.12rem; }
 .journey-next { margin-top: 32px; }
 .journey-lightbox {
   width: min(960px, calc(100% - 24px));
