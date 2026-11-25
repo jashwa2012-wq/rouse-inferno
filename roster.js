@@ -1,3 +1,5 @@
+const portfolioOutreach = 'Documents robot design and shares team progress.';
+
 export const roster = [
   {
     name: 'Mohammed C.', photo: 'assets/members/mohammed-c.png', role: 'Captain',
@@ -13,14 +15,17 @@ export const roster = [
   },
   {
     name: 'Shravan V.', photo: 'assets/members/shravan-v.png', role: 'Portfolio/Outreach',
+    responsibilities: [portfolioOutreach],
     highlights: ['Consultant at Bobbie', '2nd among 10,000+ at DECA Internationals', 'Policy debate captain'],
   },
   {
     name: 'Vaishvi A.', photo: 'assets/members/vaishvi-a.png', role: 'Portfolio/Outreach',
+    responsibilities: [portfolioOutreach],
     highlights: ['Autodesk Inventor certified', '365 Apps Texas state champion', 'Python and HTML'],
   },
   {
     name: 'Jashwanth J.', photo: 'assets/members/jashwanth-j.png', role: 'Portfolio/Outreach',
+    responsibilities: [portfolioOutreach],
     highlights: ['Robotics club president at Stiles', '3 years in robotics', 'Winner at the NASA Riverhacks Space Apps Challenge'],
   },
   {
