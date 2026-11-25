@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#211114">
   <link rel="icon" href="assets/inferno.svg" type="image/svg+xml">
   <link rel="preload" href="assets/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="site.css?v=full-bot-pinch">
-  <script src="site.js?v=full-bot-pinch-2" type="module"></script>
+  <link rel="stylesheet" href="site.css?v=full-bot-reset">
+  <script src="site.js?v=full-bot-reset" type="module"></script>
 </head>
 <body class="cinematic-home">
 <a href="#main" class="skip">Skip to content</a>
@@ -35,7 +35,10 @@
         <div class="hero-grid" aria-hidden="true"></div>
         <img src="assets/full-bot.webp" alt="Rouse Inferno’s Full Bot CAD, showing its mecanum wheels, front intake and raised shooter" width="1344" height="1010" fetchpriority="high" draggable="false">
         <span class="sculpture-drag-hint">Drag or pinch</span>
-        <button class="button button-outline sculpture-toggle" id="sculpture-toggle" type="button" hidden>Pause motion</button>
+        <div class="sculpture-controls" id="sculpture-controls" hidden>
+          <button class="button button-outline" id="sculpture-reset" type="button">Reset View</button>
+          <button class="button button-outline" id="sculpture-toggle" type="button">Pause motion</button>
+        </div>
       </figure>
     </div>
   </section>
