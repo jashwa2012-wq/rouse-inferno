@@ -175,6 +175,13 @@
   .turret-target:hover { background: #51303d; }
 }
 .turret-target:active { background: #613a48; }
+.turret-target.is-hit {
+  border-color: #fff0c9;
+  background: var(--gold);
+  color: #2d1c13;
+  box-shadow: 0 0 17px #ffc769b3;
+}
+.turret-target.is-hit::before { background: radial-gradient(circle, currentColor 0 35%, transparent 42%); }
 .turret-pollen {
   position: absolute;
   z-index: 1;

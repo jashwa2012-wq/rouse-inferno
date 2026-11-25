@@ -39,11 +39,13 @@ const angle = turret.querySelector('#turret-angle');
 const angleValue = turret.querySelector('#turret-angle-value');
 const aim = turret.querySelector('#turret-aim');
 const targets = [...turret.querySelectorAll('[data-bearing]')];
+const stage = turret.querySelector('.turret-stage');
 const launch = turret.querySelector('#turret-launch');
 const pollen = turret.querySelector('.turret-pollen');
 const shotResult = turret.querySelector('#turret-shot-result');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let flight;
+let litTarget;
 
 function describeBearing(degrees) {
   if (degrees === 0) return 'forward';
@@ -66,34 +68,67 @@ function updateTurret() {
   aim.textContent = aligned ? aligned.getAttribute('aria-label') : 'Between targets';
 }
 
-function shotPosition(radians, radius) {
+function shotPosition(direction, distance) {
   return {
-    left: `${50 + Math.sin(radians) * radius}%`,
-    top: `${50 - Math.cos(radians) * radius}%`,
+    left: `${50 + direction.x * distance}%`,
+    top: `${50 + direction.y * distance}%`,
   };
+}
+
+function findImpact(direction) {
+  const board = stage.getBoundingClientRect();
+  const toPercent = 100 / board.width;
+  const ballRadius = pollen.getBoundingClientRect().width / 2;
+
+  for (const target of targets) {
+    const bounds = target.getBoundingClientRect();
+    const x = (bounds.left + bounds.width / 2 - board.left) * toPercent - 50;
+    const y = (bounds.top + bounds.height / 2 - board.top) * toPercent - 50;
+    // Use a circle inside the target button, expanded by the ball radius for contact.
+    const radius = (Math.min(bounds.width, bounds.height) / 2 + ballRadius) * toPercent;
+    const alongShot = x * direction.x + y * direction.y;
+    const acrossShot = x * direction.y - y * direction.x;
+    if (alongShot > 0 && Math.abs(acrossShot) <= radius) {
+      const distance = alongShot - Math.sqrt(radius ** 2 - acrossShot ** 2);
+      return { target, distance };
+    }
+  }
 }
 
 function launchPollen() {
   const degrees = angle.valueAsNumber;
   const radians = degrees * Math.PI / 180;
-  const start = shotPosition(radians, 10);
-  const end = shotPosition(radians, 27);
-  const message = `Pollen traveled ${describeBearing(degrees)}.`;
+  const direction = { x: Math.sin(radians), y: -Math.cos(radians) };
 
   flight?.cancel();
   flight = undefined;
+  litTarget?.classList.remove('is-hit');
+  litTarget = undefined;
   shotResult.textContent = '';
   pollen.hidden = false;
+
+  const impact = findImpact(direction);
+  const start = shotPosition(direction, 10);
+  const end = shotPosition(direction, impact?.distance ?? 38);
   Object.assign(pollen.style, end);
 
+  const finishShot = () => {
+    flight = undefined;
+    litTarget = impact?.target;
+    litTarget?.classList.add('is-hit');
+    shotResult.textContent = litTarget
+      ? `Hit the ${litTarget.getAttribute('aria-label').toLowerCase()}.`
+      : `Pollen traveled ${describeBearing(degrees)} and missed.`;
+  };
+
   if (reducedMotion.matches || !pollen.animate) {
-    shotResult.textContent = message;
+    finishShot();
     return;
   }
-  flight = pollen.animate([start, end], { duration: 620, easing: 'ease-out' });
-  flight.onfinish = () => {
-    flight = undefined;
-    shotResult.textContent = message;
+  const animation = pollen.animate([start, end], { duration: 620, easing: 'ease-out' });
+  flight = animation;
+  animation.onfinish = () => {
+    if (flight === animation) finishShot();
   };
 }
 
