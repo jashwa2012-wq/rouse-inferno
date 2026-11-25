@@ -67,6 +67,7 @@ const loadModel = $('#load-model');
 const modelHome = $('#model-home');
 const modelViewer = $('#model-viewer');
 const fullscreen = $('#model-fullscreen');
+const resetCamera = $('#model-reset-camera');
 const fullscreenDialog = $('#model-fullscreen-dialog');
 const fullscreenControls = $('#model-fullscreen-controls');
 const explodeControls = $('#model-explode');
@@ -103,6 +104,7 @@ let openingFullscreen = false;
 function setFullscreen(expanded) {
   modelViewer.toggleAttribute('data-expanded', expanded);
   fullscreen.textContent = expanded ? 'Exit full screen' : 'Full screen';
+  resetCamera.hidden = !expanded;
   fullscreenControls.hidden = !expanded || stage.dataset.mode === 'parts';
   if (expanded) {
     if (!fullscreenControls.hidden) fullscreenControls.append(explodeControls);
@@ -146,6 +148,7 @@ document.addEventListener('fullscreenchange', () => {
   else if (modelViewer.hasAttribute('data-expanded') && !fullscreenDialog.open) setFullscreen(false);
 });
 fullscreenDialog.addEventListener('close', () => setFullscreen(false));
+resetCamera.addEventListener('click', () => viewer?.resetView());
 
 function setPart(part) {
   detailRequest += 1;
@@ -189,7 +192,7 @@ function startViewer() {
   loadModel.disabled = true;
   loadModel.textContent = 'Loading Full Bot…';
   modelStatus.textContent = 'Loading the 3D CAD model.';
-  loading = import('./assets/viewer.js?v=studio').then(async ({ createViewer }) => {
+  loading = import('./assets/viewer.js?v=cad-detail').then(async ({ createViewer }) => {
     canvas.hidden = false;
     viewer = await createViewer(canvas, stage, Number(slider.value) / 100, activePart);
     viewer.onPartPicked(selectPiece);

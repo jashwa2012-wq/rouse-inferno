@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#211114">
   <link rel="icon" href="assets/inferno.svg" type="image/svg+xml">
   <link rel="preload" href="assets/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="site.css?v=full-bot-fullscreen">
-  <script src="site.js?v=full-bot-fullscreen" type="module"></script>
+  <link rel="stylesheet" href="site.css?v=journey-and-viewer">
+  <script src="site.js?v=journey-and-viewer" type="module"></script>
 </head>
 <body class="cinematic-home">
 <a href="#main" class="skip">Skip to content</a>
@@ -16,7 +16,7 @@
 <header class="site-header" id="top">
   <div class="shell header-inner">
     <a class="brand" href="#top" aria-label="Rouse Inferno home"><img src="assets/inferno.svg" alt="" width="40" height="40"><span>ROUSE INFERNO<small>FTC TEAM 31989</small></span></a>
-    <nav aria-label="Main navigation"><a href="#team">The team</a><a href="#school">Rouse High School</a><a href="#robot">The robot</a><a href="play/">Play Simulator</a><a href="#sponsor">Sponsor</a></nav>
+    <nav aria-label="Main navigation"><a href="#team">The team</a><a href="#school">Rouse High School</a><a href="journey.html">Our Journey</a><a href="#robot">The robot</a><a href="play/">Play Simulator</a><a href="#sponsor">Sponsor</a></nav>
     <a class="button button-gold header-cta" href="#support">Support the team</a>
   </div>
 </header>
@@ -124,6 +124,7 @@
           <p>We spent the summer connecting with mentors and sharpening our skills. This season we’re mentoring younger FIRST LEGO League teams, expanding outreach, strengthening team culture, and sharing our progress on social media.</p>
           <h3>Our goals</h3>
           <ul><li>Compete at the FTC World Championship.</li><li>Further FIRST’s initiatives.</li><li>Build real-world skills.</li></ul>
+          <a class="button button-line season-journey" href="journey.html">View Our Journey album</a>
         </div>
         <div class="season-photos">
           <figure><img src="assets/season/previous-season-field.png" width="379" height="321" loading="lazy" alt="Robots and game pieces on a competition field"></figure>
@@ -145,7 +146,8 @@
               <canvas id="robot-canvas" aria-label="Interactive 3D robot. Use the exploded view slider and assembly buttons to inspect the model." hidden></canvas>
               <div class="part-labels" id="part-labels"></div>
               <div class="stage-title"><span class="stage-dot"></span><span id="view-mode">CAD preview</span></div>
-              <button class="button button-outline model-fullscreen-button" id="model-fullscreen" type="button" hidden>Full screen</button>
+              <button class="button button-outline model-stage-button" id="model-fullscreen" type="button" hidden>Full screen</button>
+              <button class="button button-outline model-stage-button" id="model-reset-camera" type="button" hidden>Reset view</button>
               <p class="stage-status" id="model-status" role="status"></p>
             </div>
             <div class="model-launch" id="model-launch">
