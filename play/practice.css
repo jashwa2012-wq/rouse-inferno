@@ -76,6 +76,7 @@ canvas:focus { outline-offset: -4px; }
 .gate-card p { color: var(--muted); margin: 8px 0 15px; }
 .strip { min-height: 52px; padding: 7px 13px; display: flex; align-items: center; flex-wrap: wrap; gap: 7px 18px; color: var(--muted); font-size: .875rem; }
 .strip .controllers { margin-left: auto; }
+.strip-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
 .fullscreen-button { min-height: 44px; white-space: nowrap; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 .fullscreen-button:active { background: #624255; }
 #play-dialog {
@@ -110,8 +111,41 @@ canvas:focus { outline-offset: -4px; }
 .help { margin-top: 14px; border: 1px solid var(--edge); background: #251a22; border-radius: 6px; padding: 10px 14px; color: var(--muted); font-size: .875rem; }
 .help summary { color: var(--text); font-weight: 750; }
 .help-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 9px; }
-.help h2 { color: var(--text); font-size: .96rem; margin-bottom: 5px; }
-.help p + p { margin-top: 3px; }
+.controls-guide h2 { color: var(--text); font-size: .96rem; margin-bottom: 5px; }
+.controls-guide p + p { margin-top: 3px; }
+#controls-dialog {
+  inset: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  width: min(740px, calc(100% - 24px - env(safe-area-inset-left) - env(safe-area-inset-right)));
+  max-height: calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  padding: 0;
+  border: 1px solid #917182;
+  border-radius: 9px;
+  background: var(--panel);
+  color: var(--text);
+}
+#controls-dialog[open] { display: grid; grid-template-rows: auto minmax(0, 1fr); }
+#controls-dialog::backdrop { background: #110c14a6; }
+.controls-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--edge);
+  padding: 8px 16px;
+}
+.controls-heading h2 { font-size: 1.35rem; }
+.controls-content {
+  padding: 14px 16px 16px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  color: var(--muted);
+  font-size: .875rem;
+}
+.controls-content:focus-visible { outline-offset: -3px; }
+.controls-content .help-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 175px), 1fr));
+  margin-top: 0;
+}
 .match-help { margin-top: 13px; border-top: 1px solid var(--edge); padding-top: 9px; }
 kbd { font: 700 .85em/1.2 ui-monospace, monospace; background: #523b4b; padding: 2px 4px; border-radius: 2px; color: var(--text); white-space: nowrap; }
 .touch { display: none; justify-content: space-evenly; gap: 8px; margin-top: 10px; }
