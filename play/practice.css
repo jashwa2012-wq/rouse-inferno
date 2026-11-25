@@ -16,6 +16,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
 body, h1, h2, p { margin: 0; }
+body { padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
 a { color: inherit; text-decoration: none; }
 button, select { font: inherit; }
 button, select, summary { cursor: pointer; }
@@ -75,6 +76,37 @@ canvas:focus { outline-offset: -4px; }
 .gate-card p { color: var(--muted); margin: 8px 0 15px; }
 .strip { min-height: 52px; padding: 7px 13px; display: flex; align-items: center; flex-wrap: wrap; gap: 7px 18px; color: var(--muted); font-size: .875rem; }
 .strip .controllers { margin-left: auto; }
+.fullscreen-button { min-height: 44px; white-space: nowrap; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.fullscreen-button:active { background: #624255; }
+#play-dialog {
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: var(--arena);
+}
+#play-dialog::backdrop { background: var(--arena); }
+.play-area[data-expanded] {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  width: 100%;
+  height: 100%;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  background: var(--arena);
+}
+.play-area[data-expanded] .match { display: flex; flex-direction: column; border: 0; border-radius: 0; }
+.play-area[data-expanded] .stage { flex: 1; height: auto; min-height: 0; }
+.play-area[data-expanded] .gate { align-items: safe center; overflow: auto; }
+.play-area[data-expanded] .touch { margin: 0; padding: 8px; background: var(--panel); }
+@media (max-height: 500px) {
+  .play-area[data-expanded] .gate { padding: 8px; }
+  .play-area[data-expanded] .gate-card { padding: 12px; }
+}
 .help { margin-top: 14px; border: 1px solid var(--edge); background: #251a22; border-radius: 6px; padding: 10px 14px; color: var(--muted); font-size: .875rem; }
 .help summary { color: var(--text); font-weight: 750; }
 .help-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 9px; }

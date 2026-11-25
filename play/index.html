@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#24151a">
   <meta name="description" content="Drive Rouse Inferno's FTC robot in a BIOBUZZ practice match. Play solo, share a screen, or play a friend online.">
   <title>BIOBUZZ Practice | Rouse Inferno</title>
   <link rel="icon" href="./inferno.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./practice.css?v=5">
-  <script src="./practice.js?v=step-ap242" type="module"></script>
+  <link rel="stylesheet" href="./practice.css?v=fullscreen">
+  <script src="./practice.js?v=fullscreen" type="module"></script>
 </head>
 <body>
   <header class="mast">
@@ -33,8 +33,11 @@
         </label>
         <button class="action" id="restart" type="button" disabled>Start match</button>
         <button class="quiet room-button" id="online" type="button" disabled>Play online</button>
+        <button class="quiet fullscreen-button" type="button" id="fullscreen" hidden>Full screen</button>
       </div>
     </div>
+    <div id="play-home">
+    <div class="play-area" id="play-area">
     <section class="match" aria-label="Match simulator">
       <div class="scoreboard" aria-label="Score and match timer">
         <div class="score blue" id="blue-score-card"><span>Blue</span><output id="blue-score" aria-label="Blue score">0</output></div>
@@ -73,6 +76,7 @@
         <p id="status">Choose a match mode above.</p>
         <p class="controllers" id="controllers">Blue pad: A / Cross to join</p>
         <button class="quiet" type="button" id="pause" disabled>Pause</button>
+        <button class="quiet fullscreen-button" type="button" id="exit-fullscreen" hidden>Exit full screen</button>
       </div>
     </section>
     <section class="touch" aria-label="Touch controls">
@@ -92,6 +96,8 @@
         <button id="touch-launch" type="button">Launch</button>
       </div>
     </section>
+    </div>
+    </div>
     <details class="help" open>
       <summary>Controls</summary>
       <div class="help-grid">
@@ -119,6 +125,7 @@
       <p class="match-help">Online, the host drives Blue and the guest drives Red. Red can also use <kbd>W S</kbd> to drive, <kbd>A D</kbd> or <kbd>Q E</kbd> to turn, arrows to aim, and <kbd>Space</kbd> to launch. <kbd>V</kbd> switches your own camera.</p>
     </details>
   </main>
+  <dialog id="play-dialog" aria-label="Full screen match simulator"></dialog>
   <dialog id="room-dialog" aria-labelledby="room-title">
     <div class="room-heading">
       <h2 id="room-title">Play online</h2>
