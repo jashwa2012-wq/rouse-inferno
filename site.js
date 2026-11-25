@@ -322,3 +322,21 @@ if (fundraising.sponsors.length) {
     $('#sponsor-names').append(item);
   }
 }
+
+const sculptureCanvas = $('#sculpture-canvas');
+if (sculptureCanvas) {
+  const motionPreference = matchMedia('(prefers-reduced-motion: no-preference)');
+  let started = false;
+  const startSculpture = () => {
+    if (started || !motionPreference.matches || navigator.connection?.saveData) return;
+    started = true;
+    import('./assets/sculpture.js?v=1')
+      .then(({ mountSculpture }) => mountSculpture(sculptureCanvas, motionPreference))
+      .catch(() => {
+        // The CAD stills and the rest of the homepage remain usable.
+      });
+  };
+  motionPreference.addEventListener('change', startSculpture);
+  if ('requestIdleCallback' in window) requestIdleCallback(startSculpture, { timeout: 1200 });
+  else setTimeout(startSculpture, 300);
+}

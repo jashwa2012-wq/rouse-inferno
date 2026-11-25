@@ -7,11 +7,12 @@
   <meta name="theme-color" content="#211114">
   <link rel="icon" href="assets/inferno.svg" type="image/svg+xml">
   <link rel="preload" href="assets/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="site.css?v=inferno-polish">
-  <script src="site.js?v=packet-v2" type="module"></script>
+  <link rel="stylesheet" href="site.css?v=full-bot-scene">
+  <script src="site.js?v=full-bot-scene" type="module"></script>
 </head>
-<body>
+<body class="cinematic-home">
 <a href="#main" class="skip">Skip to content</a>
+<canvas id="sculpture-canvas" class="sculpture-canvas" aria-hidden="true" hidden></canvas>
 <header class="site-header" id="top">
   <div class="shell header-inner">
     <a class="brand" href="#top" aria-label="Rouse Inferno home"><img src="assets/inferno.svg" alt="" width="40" height="40"><span>ROUSE INFERNO<small>FTC TEAM 31989</small></span></a>
@@ -33,6 +34,7 @@
       <figure class="hero-art">
         <div class="hero-grid" aria-hidden="true"></div>
         <img src="assets/full-bot.webp" alt="Rouse Inferno’s Full Bot CAD, showing its mecanum wheels, front intake and raised shooter" width="1344" height="1010" fetchpriority="high">
+        <button class="button button-outline sculpture-toggle" id="sculpture-toggle" type="button" hidden>Pause motion</button>
       </figure>
     </div>
   </section>
