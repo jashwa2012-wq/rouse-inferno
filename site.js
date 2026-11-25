@@ -70,7 +70,7 @@ const inspect = $('#inspect-parts');
 const search = $('#part-search');
 const partList = $('#part-list');
 const assemblies = [...document.querySelectorAll('.assembly')];
-const initialExplosion = 78;
+const initialExplosion = 0;
 const pageSize = 6;
 const sideDescription = 'Mecanum wheels, drive plates, pulleys, and the hardware that holds them together.';
 const descriptions = {
@@ -134,18 +134,19 @@ function startViewer() {
   loadModel.disabled = true;
   loadModel.textContent = 'Loading Full Bot…';
   modelStatus.textContent = 'Loading the 3D CAD model.';
-  loading = import('./assets/viewer.js').then(async ({ createViewer }) => {
+  loading = import('./assets/viewer.js?v=studio').then(async ({ createViewer }) => {
     canvas.hidden = false;
     viewer = await createViewer(canvas, stage, Number(slider.value) / 100, activePart);
     viewer.onPartPicked(selectPiece);
     stage.dataset.view = 'live';
+    $('#model-launch').hidden = true;
     slider.disabled = reset.disabled = false;
-    $('#view-mode').textContent = 'ASSEMBLY VIEW';
+    $('#view-mode').textContent = 'Assembly view';
     setPart(activePart);
   }).catch((error) => {
     console.warn('Full Bot viewer could not start', error);
     canvas.hidden = true;
-    modelStatus.textContent = 'The 3D view is unavailable. You can still see the exploded CAD image.';
+    modelStatus.textContent = 'The interactive view couldn’t load. You can still see the CAD preview.';
     loadModel.textContent = 'Retry interactive 3D';
     loadModel.disabled = false;
   }).finally(() => { loading = undefined; });
@@ -182,7 +183,7 @@ inspect.addEventListener('click', async () => {
     $('#assembly-tools').hidden = true;
     $('#part-tools').hidden = false;
     stage.dataset.mode = 'parts';
-    $('#view-mode').textContent = 'INDIVIDUAL PARTS';
+    $('#view-mode').textContent = 'Individual parts';
     modelStatus.textContent = '';
     updateParts();
     $('#back-to-assemblies').focus({ preventScroll: true });
@@ -198,7 +199,7 @@ $('#back-to-assemblies').addEventListener('click', () => {
   $('#assembly-tools').hidden = false;
   $('#part-tools').hidden = true;
   delete stage.dataset.mode;
-  $('#view-mode').textContent = 'ASSEMBLY VIEW';
+  $('#view-mode').textContent = 'Assembly view';
   setPart(activePart);
   inspect.focus();
 });
@@ -330,7 +331,7 @@ if (sculptureCanvas) {
   const startSculpture = () => {
     if (started || !motionPreference.matches || navigator.connection?.saveData) return;
     started = true;
-    import('./assets/sculpture.js?v=6')
+    import('./assets/sculpture.js?v=7')
       .then(({ mountSculpture }) => mountSculpture(sculptureCanvas, motionPreference))
       .catch(() => {
         // The CAD stills and the rest of the homepage remain usable.
