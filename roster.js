@@ -12,15 +12,15 @@ export const roster = [
     highlights: ['America’s Top Student Innovator', 'Neurotech and Embedded Systems Champion at NSF'],
   },
   {
-    name: 'Shravan V.', photo: 'assets/members/shravan-v.png', role: 'Portfolio',
+    name: 'Shravan V.', photo: 'assets/members/shravan-v.png', role: 'Portfolio/Outreach',
     highlights: ['Consultant at Bobbie', '2nd among 10,000+ at DECA Internationals', 'Policy debate captain'],
   },
   {
-    name: 'Vaishvi A.', photo: 'assets/members/vaishvi-a.png', role: 'Portfolio',
+    name: 'Vaishvi A.', photo: 'assets/members/vaishvi-a.png', role: 'Portfolio/Outreach',
     highlights: ['Autodesk Inventor certified', '365 Apps Texas state champion', 'Python and HTML'],
   },
   {
-    name: 'Jashwanth J.', photo: 'assets/members/jashwanth-j.png', role: 'Outreach',
+    name: 'Jashwanth J.', photo: 'assets/members/jashwanth-j.png', role: 'Portfolio/Outreach',
     highlights: ['Robotics club president at Stiles', '3 years in robotics', 'Winner at the NASA Riverhacks Space Apps Challenge'],
   },
   {
