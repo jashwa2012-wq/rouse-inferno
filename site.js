@@ -64,6 +64,13 @@ const stage = $('#stage');
 const canvas = $('#robot-canvas');
 const modelStatus = $('#model-status');
 const loadModel = $('#load-model');
+const modelHome = $('#model-home');
+const modelViewer = $('#model-viewer');
+const fullscreen = $('#model-fullscreen');
+const fullscreenDialog = $('#model-fullscreen-dialog');
+const fullscreenControls = $('#model-fullscreen-controls');
+const explodeControls = $('#model-explode');
+const assemblyTools = $('#assembly-tools');
 const slider = $('#explode-range');
 const reset = $('#reset-model');
 const inspect = $('#inspect-parts');
@@ -91,6 +98,54 @@ let detailRequest = 0;
 let page = 0;
 let selected = null;
 let layout = true;
+let openingFullscreen = false;
+
+function setFullscreen(expanded) {
+  modelViewer.toggleAttribute('data-expanded', expanded);
+  fullscreen.textContent = expanded ? 'Exit full screen' : 'Full screen';
+  fullscreenControls.hidden = !expanded || stage.dataset.mode === 'parts';
+  if (expanded) {
+    if (!fullscreenControls.hidden) fullscreenControls.append(explodeControls);
+  } else {
+    assemblyTools.prepend(explodeControls);
+    if (modelViewer.parentElement !== modelHome) modelHome.append(modelViewer);
+    modelHome.style.minHeight = '';
+  }
+  fullscreen.focus({ preventScroll: true });
+}
+
+fullscreen.addEventListener('click', async () => {
+  if (document.fullscreenElement === modelViewer) {
+    await document.exitFullscreen();
+    return;
+  }
+  if (fullscreenDialog.open) {
+    fullscreenDialog.close();
+    return;
+  }
+  if (openingFullscreen) return;
+  openingFullscreen = true;
+  modelHome.style.minHeight = `${modelHome.offsetHeight}px`;
+  if (document.fullscreenEnabled && modelViewer.requestFullscreen) {
+    try {
+      await modelViewer.requestFullscreen({ navigationUI: 'hide' });
+      return;
+    } catch {
+      // The viewport-sized dialog also works when native full screen is unavailable.
+    } finally {
+      openingFullscreen = false;
+    }
+  }
+  fullscreenDialog.append(modelViewer);
+  fullscreenDialog.showModal();
+  setFullscreen(true);
+  openingFullscreen = false;
+});
+document.addEventListener('fullscreenchange', () => {
+  if (document.fullscreenElement === modelViewer) setFullscreen(true);
+  else if (modelViewer.hasAttribute('data-expanded') && !fullscreenDialog.open) setFullscreen(false);
+});
+fullscreenDialog.addEventListener('close', () => setFullscreen(false));
 
 function setPart(part) {
   detailRequest += 1;
@@ -139,6 +194,7 @@ function startViewer() {
     viewer = await createViewer(canvas, stage, Number(slider.value) / 100, activePart);
     viewer.onPartPicked(selectPiece);
     stage.dataset.view = 'live';
+    fullscreen.hidden = false;
     $('#model-launch').hidden = true;
     slider.disabled = reset.disabled = false;
     $('#view-mode').textContent = 'Assembly view';

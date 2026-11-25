@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#211114">
   <link rel="icon" href="assets/inferno.svg" type="image/svg+xml">
   <link rel="preload" href="assets/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="site.css?v=full-bot-studio">
-  <script src="site.js?v=full-bot-studio" type="module"></script>
+  <link rel="stylesheet" href="site.css?v=full-bot-fullscreen">
+  <script src="site.js?v=full-bot-fullscreen" type="module"></script>
 </head>
 <body class="cinematic-home">
 <a href="#main" class="skip">Skip to content</a>
@@ -137,24 +137,30 @@
     <div class="shell section">
       <div class="section-top"><h2 id="robot-title">Inside Full Bot</h2><p>See how the mecanum drivetrain, roller intake, and Pollen-launching turret fit together. Open the 3D viewer to spread out the assemblies or inspect individual parts.</p></div>
       <div class="lab-grid">
-        <div class="lab-display">
-          <div class="model-stage" id="stage" data-view="poster">
-            <div class="stage-grid" aria-hidden="true"></div>
-            <img class="model-poster" src="assets/full-bot.webp" alt="Assembled Full Bot CAD showing the 31989 plaque, mecanum drivetrain, front intake, and turret" width="1344" height="1010" loading="lazy">
-            <canvas id="robot-canvas" aria-label="Interactive 3D robot. Use the exploded view slider and assembly buttons to inspect the model." hidden></canvas>
-            <div class="part-labels" id="part-labels"></div>
-            <div class="stage-title"><span class="stage-dot"></span><span id="view-mode">CAD preview</span></div>
-            <p class="stage-status" id="model-status" role="status"></p>
-          </div>
-          <div class="model-launch" id="model-launch">
-            <button class="button button-gold" id="load-model" type="button">Launch interactive 3D</button>
+        <div class="lab-display" id="model-home">
+          <div class="model-viewer" id="model-viewer">
+            <div class="model-stage" id="stage" data-view="poster">
+              <div class="stage-grid" aria-hidden="true"></div>
+              <img class="model-poster" src="assets/full-bot.webp" alt="Assembled Full Bot CAD showing the 31989 plaque, mecanum drivetrain, front intake, and turret" width="1344" height="1010" loading="lazy">
+              <canvas id="robot-canvas" aria-label="Interactive 3D robot. Use the exploded view slider and assembly buttons to inspect the model." hidden></canvas>
+              <div class="part-labels" id="part-labels"></div>
+              <div class="stage-title"><span class="stage-dot"></span><span id="view-mode">CAD preview</span></div>
+              <button class="button button-outline model-fullscreen-button" id="model-fullscreen" type="button" hidden>Full screen</button>
+              <p class="stage-status" id="model-status" role="status"></p>
+            </div>
+            <div class="model-launch" id="model-launch">
+              <button class="button button-gold" id="load-model" type="button">Launch interactive 3D</button>
+            </div>
+            <div class="model-fullscreen-controls" id="model-fullscreen-controls" hidden></div>
           </div>
         </div>
         <div class="lab-controls">
           <div id="assembly-tools">
-          <label for="explode-range">Exploded view <output id="explode-value" for="explode-range">0%</output></label>
-          <input disabled id="explode-range" type="range" min="0" max="100" value="0">
-          <div class="range-ends"><span>Assembled</span><span>Exploded</span></div>
+          <div class="model-explode" id="model-explode">
+            <label for="explode-range">Exploded view <output id="explode-value" for="explode-range">0%</output></label>
+            <input disabled id="explode-range" type="range" min="0" max="100" value="0">
+            <div class="range-ends"><span>Assembled</span><span>Exploded</span></div>
+          </div>
           <div class="assembly-list" aria-label="Show individual robot assemblies">
             <button type="button" class="assembly" data-part="all" aria-pressed="true"><span>All assemblies</span><i></i></button>
             <button type="button" class="assembly" data-part="frame" aria-pressed="false"><span>Chassis</span><i></i></button>
@@ -180,6 +186,7 @@
           </div>
         </div>
       </div>
+      <dialog id="model-fullscreen-dialog" aria-label="Full Bot 3D viewer"></dialog>
     </div>
   </section>
 
