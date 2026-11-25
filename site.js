@@ -192,7 +192,7 @@ function startViewer() {
   loadModel.disabled = true;
   loadModel.textContent = 'Loading Full Bot…';
   modelStatus.textContent = 'Loading the 3D CAD model.';
-  loading = import('./assets/viewer.js?v=cad-detail').then(async ({ createViewer }) => {
+  loading = import('./assets/viewer.js?v=step-ap242').then(async ({ createViewer }) => {
     canvas.hidden = false;
     viewer = await createViewer(canvas, stage, Number(slider.value) / 100, activePart);
     viewer.onPartPicked(selectPiece);
@@ -390,7 +390,7 @@ if (sculptureCanvas) {
   const startSculpture = () => {
     if (started || !motionPreference.matches || navigator.connection?.saveData) return;
     started = true;
-    import('./assets/sculpture.js?v=7')
+    import('./assets/sculpture.js?v=step-ap242')
       .then(({ mountSculpture }) => mountSculpture(sculptureCanvas, motionPreference))
       .catch(() => {
         // The CAD stills and the rest of the homepage remain usable.
