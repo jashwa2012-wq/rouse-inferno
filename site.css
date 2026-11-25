@@ -63,6 +63,7 @@
 .cinematic-home :is(.season-section, .sponsor) > .shell,
 .cinematic-home .lab :is(.section-top, .lab-controls) { position: relative; z-index: 2; }
 .cinematic-home .lab-controls { background: #fffdfa; }
+.cinematic-home .site-header .brand img { flex: none; width: 48px; height: 48px; }
 .sculpture-live .hero-art { touch-action: pan-y; }
 .sculpture-live .hero-art img,
 .sculpture-live .model-poster { opacity: 0; animation: none; }
@@ -231,6 +232,18 @@ dialog{border:1px solid #d0b0b1;border-radius:9px;padding:23px;width:min(510px,c
 
 @media (max-width:450px) {
   .hero-actions { display: grid; gap: 8px; }
+}
+@media (max-width: 760px) {
+  .cinematic-home .header-inner {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+  }
+  .cinematic-home .site-header .brand img {
+    width: clamp(48px, 14vw, 60px);
+    height: auto;
+  }
+  .cinematic-home .site-header nav { grid-column: 1 / -1; }
+  .cinematic-home .header-cta { justify-self: end; min-height: 44px; max-width: 100%; text-wrap: balance; }
 }
 @media(max-width:360px){
   .site-header .shell{width:calc(100% - 24px)}
